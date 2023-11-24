@@ -1,6 +1,6 @@
 local Vector = require("modules/Vector")
 local Goal = require("modules/Goal")
-local music_example = require("module/MusicExample")
+local music_example = require("modules/MusicExample")
 
 local sheet_music = {}
 

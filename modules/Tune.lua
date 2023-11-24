@@ -1,3 +1,4 @@
+local Vector = require("modules/Vector")
 local tune = {}
 
 -- @param type (table:Vector): position initiel
