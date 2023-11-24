@@ -13,11 +13,15 @@ end
 
 
 function music.getTune(time)
-    local tune = music.tunes[0]
+    if #music.tunes ~= 0 then 
+        local tune = music.tunes[1]
 
-    if tune.time == time then
-        return table.remove(music.tunes, 0)
+        if tune.time >= time then
+            return table.remove(music.tunes, 1)
+        end
     end
+
+    return false
 end
 
 
