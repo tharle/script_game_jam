@@ -2,10 +2,13 @@
 --  LOAD
 ---------------------------------------------------------------
 
+require("libs/Clone") -- Lib pour clone table
+
 GameState = require("modules/GameState")
 local main_menu = require("controllers/MainMenu")
 local game = require("controllers/Game")
-local game_state = GameState.MAIN_MENU
+-- local game_state = GameState.MAIN_MENU
+local game_state = GameState.GAME_RUN
 
 mode_debug = false
 
