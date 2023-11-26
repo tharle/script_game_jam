@@ -20,7 +20,6 @@ end
 
 
 function main_menu.update(dt)
-    -- changeState(GameState.GAME_RUN)
 
     if(love.keyboard.isDown("return")) then
         changeState(GameState.GAME_RUN)
@@ -41,10 +40,11 @@ end
 
 
 
- -- Update rectangle posX to make type writer effect on Game Information text
+-- Update rectangle posX to make type writer effect on Game Information text
 initRecPosX = 100
 rectanglePosX = 100
 local RightScrollSpeed = 300
+
 function UpdateRectangle(dt)
 
     rectanglePosX = rectanglePosX + RightScrollSpeed * dt
@@ -88,8 +88,8 @@ function DrawMainMenuUI()
     love.graphics.setColor(teal)
     love.graphics.setFont(titleFont)
     love.graphics.print("GAME NAME", SCREEN_WIDHT * 0.12, SCREEN_HEIGHT * 0.07)
+    
     love.graphics.setColor(black)
-    --love.graphics.rectangle(mode (DrawMode), x (number), y (number), width (number), height (number))
     love.graphics.rectangle("fill", rectanglePosX, SCREEN_HEIGHT * 0.07, SCREEN_WIDHT, 180)
 
 
