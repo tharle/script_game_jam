@@ -11,6 +11,8 @@ function game.load()
 end
 
 function game.update(dt)
+    if not isStateRun() then return end
+    
     game.timer = game.timer + dt
     sheet_music.update(dt, game.timer)
 end
