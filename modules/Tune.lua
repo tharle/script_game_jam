@@ -1,30 +1,41 @@
 local Vector = require("modules/Vector")
-local tune = {}
+local Tune = {}
+Tune.__index = Tune
 
 -- @param type (table:Vector): position initiel
 -- @param time (number): dans quel temps la tune devrait être joué
-function tune.create(tune_type, time)
-    tune.position = Vector.new(760, 0)
-    tune.velocity = 10
-    tune.direction = Vector:Left()
-    tune.type = tune_type
-    tune.time = time
+function Tune.new(tune_type, time)
+    local o = {}
+    
+    o.position = Vector.new(880, 20)
+    o.velocity = 250
+    o.direction = Vector:Left()
+    o.type = tune_type
+    o.time = time
+    o.width = o.type.width
+    o.height = o.type.height
 
-    return clone(tune)
+    setmetatable(o, Tune)
+
+    return o
 end
 
-function tune.update(dt)
-    local direction_velocity = tune.direction:multiplication(tune.velocity * dt)
-    tune.position = tune.position:addtion(direction_velocity)
+function Tune:update(dt)
+    local direction_velocity = self.direction:multiplication(self.velocity * dt)
+    self.position = self.position:addtion(direction_velocity)
 end
 
-function tune.toString()
-    return "Table:Tune("..tune.type.name..")"
+function Tune:getLimitX()
+    return Vector.new(self.position.x, self.position.x + self.width)
 end
 
-function tune.draw()
-    love.graphics.draw(tune.type.sprite, tune.position.x, tune.position.y)
+function Tune:toString()
+    return "Table:Tune("..self.type.key..")"
+end
+
+function Tune:draw()
+    love.graphics.draw(self.type.sprite, self.position.x, self.position.y)
 end
 
 
-return tune
+return Tune
