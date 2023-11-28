@@ -28,10 +28,8 @@ function game.update(dt)
 end
 
 function game.watchKeyboard(dt)
-    cool_down_key_press = cool_down_key_press + dt
-    if cool_down_key_press < timer_key_press then return  end
+    
     local tune_type_pressed = false
-
     if love.keyboard.isDown(tune_type.A.key) then
         tune_type_pressed = tune_type.A
     elseif love.keyboard.isDown(tune_type.S.key) then
@@ -44,8 +42,9 @@ function game.watchKeyboard(dt)
         tune_type_pressed = tune_type.SPACE_BAR
     end
     
-    if tune_type_pressed then 
-        cool_down_key_press = cool_down_key_press - timer_key_press
+    cool_down_key_press = cool_down_key_press + dt
+    if cool_down_key_press >= timer_key_press and tune_type_pressed then 
+        cool_down_key_press = 0
         print("PRESS "..tune_type_pressed.key) 
         game.target_tune(tune_type_pressed)
     end
