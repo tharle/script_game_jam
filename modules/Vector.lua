@@ -70,16 +70,25 @@ function Vector:isInLimit(valueMin, valueMax)
 end
 
 function Vector:normalazed()
-    local magnitude = math.sqrt( (self.x ^ 2) + (self.y ^ 2) )
+    local magnitude = self:magnitude()
     return Vector.new(self.x/magnitude, self.y/magnitude)
 end
 
  -- @param vector_b (table: Vector): vector qui sera subtrai au Vector self
- function Vector:subtraction(vector_b)
+function Vector:subtraction(vector_b)
     local result_x = self.x - vector_b.x
     local result_y = self.y - vector_b.y
 
     return Vector.new(result_x, result_y)
+end
+
+function Vector:distance(vector_b)
+    local vector_between = self:subtraction(vector_b)
+    return vector_between:magnitude()
+end
+
+function Vector:magnitude()
+    return math.sqrt( (self.x ^ 2) + (self.y ^ 2))
 end
 
 function Vector:toString()
