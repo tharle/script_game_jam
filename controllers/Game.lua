@@ -1,6 +1,6 @@
 
 tune_type = require("modules/TuneType") -- on laisse le "global" pour TuneType, pour juste charger une fois les sprites des tunes
-hit_type = require("modules/HitType")
+HitType = require("modules/HitType")
 
 local sheet_music = require("controllers/SheetMusic")
 
@@ -15,7 +15,7 @@ function game.load()
     game.timer = 0
     game.score = 0
     game.combo = 0
-    sheet_music.load()
+    sheet_music.load(game)
 end
 
 function game.update(dt)
@@ -45,29 +45,34 @@ function game.watchKeyboard(dt)
     cool_down_key_press = cool_down_key_press + dt
     if cool_down_key_press >= timer_key_press and tune_type_pressed then 
         cool_down_key_press = 0
-        print("PRESS "..tune_type_pressed.key) 
         game.target_tune(tune_type_pressed)
     end
 end
 
 function game.target_tune(tune_type_pressed)
     if sheet_music.tune_in_goal == nil then
-        game.combo = 0
-        print("MISS")
-    elseif sheet_music.tune_in_goal.type ~= tune_type_pressed.type then
-        game.combo = 0
-        sheet_music.remove_tune_in_goal(false)
-        print("MISS")
-    elseif sheet_music.tune_in_goal.type == tune_type_pressed.type then
+        game.miss()
+    elseif sheet_music.tune_in_goal.type.key ~= tune_type_pressed.key then
+        game.miss()
+        sheet_music.removeTuneInGoal(false)
+    elseif sheet_music.tune_in_goal.type.key == tune_type_pressed.key then
         game.combo = game.combo + 1
-        hit_type = sheet_music.remove_tune_in_goal(true)
+        hit_type = sheet_music.removeTuneInGoal(true)
         game.calcul_score(hit_type)
     end
 end
 
+function game.miss()
+    game.combo = 0
+end
+
 function game.calcul_score(hit_type)
-    local score = hit_type.value * math.floor(game.combo/combo_multipl)
-    print("ADD "..score.." TO YOUR SCORE")
+    local score = hit_type.value * (math.floor(game.combo/combo_multipl) + 1)
+    game.score = game.score + score
+    print("COMBO X "..game.combo)
+    print(hit_type.name)
+    print("ADD: "..score.." TO YOUR SCORE")
+    print("TOTAL SCORE: "..game.score)
 end
 
 function game.draw()

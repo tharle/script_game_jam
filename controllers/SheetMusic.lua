@@ -5,6 +5,7 @@ local music_example = require("modules/MusicExample")
 local sheet_music   = {}
 local time_check_goal_tune = 0.05
 local elapsy_check_goal_tune = 0
+local game;
 function sheet_music.load(game_ref)
     sheet_music.scr_image       = "assets/mock/game_line_background.png"
     sheet_music.sprite          = love.graphics.newImage(sheet_music.scr_image)
@@ -15,6 +16,8 @@ function sheet_music.load(game_ref)
     sheet_music.music           = music_example.load()
     sheet_music.run_tunes       = {}
     sheet_music.tune_in_goal    = nil
+
+    game = game_ref
 end
 
 function sheet_music.update(dt, timer)
@@ -46,13 +49,12 @@ function sheet_music.checkTuneInGoal()
 end
 
 function sheet_music.checkTuneOutGoal()
-    print("checkTuneOutGoal: ")
     if #sheet_music.run_tunes == 0 then return end
 
     local next_tune = sheet_music.run_tunes[1]
-    if not sheet_music.goal.checkTuneInGoal(sheet_music.tune_in_goal) then
-        print("MISS TUNE: "..sheet_music.tune_in_goal:toString())
-        sheet_music.remove_tune_in_goal(false)
+    if not sheet_music.goal.checkTuneInGoal(sheet_music.tune_in_goal) then        
+        sheet_music.removeTuneInGoal(false)
+        game.miss()
     end
 end
 
@@ -66,14 +68,18 @@ function sheet_music.checkNextTuneGoal()
     end
 end
 
-function sheet_music.remove_tune_in_goal(is_was_a_hit)
+function sheet_music.removeTuneInGoal(is_was_a_hit)
     -- TODO maybe faire une animation de miss
+    local hit_type
+    if is_was_a_hit then 
+        hit_type = sheet_music.goal.getHitType(sheet_music.tune_in_goal)
+    end
+
     sheet_music.tune_in_goal = nil
     table.remove(sheet_music.run_tunes, 1)
 
-    if is_was_a_hit then 
-        return sheet_music.goal.get_hit_type(tune)
-    end
+    return hit_type
+
 end
 
 function sheet_music.draw()

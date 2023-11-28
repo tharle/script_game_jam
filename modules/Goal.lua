@@ -28,15 +28,15 @@ function goal.checkTuneInGoal(tune)
     return result_limit_x == 0
 end
 
-function goal.get_hit_type(tune)
+function goal.getHitType(tune)
     local distance_from_goal = tune.position:distance(goal.position)
 
-    if distance_from_goal <= hit_type.PERFECT.distance then
-        return hit_type.PERFECT
-    elseif distance_from_goal <= hit_type.WELL_DONE.distance then
-        return hit_type.WELL_DONE
-    elseif distance_from_goal <= hit_type.GOOD.distance then
-        return hit_type.GOOD
+    if distance_from_goal <= HitType.PERFECT.distance then
+        return HitType.PERFECT
+    elseif distance_from_goal <= HitType.WELL_DONE.distance then
+        return HitType.WELL_DONE
+    else
+        return HitType.GOOD
     end
 end
 
