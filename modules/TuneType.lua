@@ -18,7 +18,7 @@ local tune_type = {
     S           = create_tune_type(2, "assets/mock/game_tune_s.png", "s"),
     D           = create_tune_type(3, "assets/mock/game_tune_d.png", "d"),
     F           = create_tune_type(4, "assets/mock/game_tune_f.png", "f"),
-    SPACE_BAR   = create_tune_type(5, "assets/mock/game_tune_space_bar.png", " "),
+    SPACE_BAR   = create_tune_type(5, "assets/mock/game_tune_space_bar.png", "space"),
 }
 
 return tune_type

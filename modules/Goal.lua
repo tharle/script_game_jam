@@ -9,6 +9,7 @@ function goal.create(position)
     goal.height     = goal.sprite:getHeight()
     goal.position   = position
     goal.colision_x = Vector.new(position.x, position.x + goal.width)
+    goal.center     = Vector.new(position.x + goal.width / 2, position.y + goal.height / 2)
 
     return goal
 end
@@ -25,6 +26,18 @@ function goal.checkTuneInGoal(tune)
     end
 
     return result_limit_x == 0
+end
+
+function goal.get_hit_type(tune)
+    local distance_from_goal = tune.position:distance(goal.position)
+
+    if distance_from_goal <= hit_type.PERFECT.distance then
+        return hit_type.PERFECT
+    elseif distance_from_goal <= hit_type.WELL_DONE.distance then
+        return hit_type.WELL_DONE
+    elseif distance_from_goal <= hit_type.GOOD.distance then
+        return hit_type.GOOD
+    end
 end
 
 function goal.draw()

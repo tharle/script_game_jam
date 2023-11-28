@@ -10,13 +10,9 @@ local game = require("controllers/Game")
 local gameOver_menu = require("controllers/GameOverScreen")
 local gameWon_menu = require("controllers/WonScreen")
 
-local game_state = GameState.MAIN_MENU  
-
+local game_state = GameState.GAME_RUN  
 
 mode_debug = false
-
-
-
 
 function  love.load()
     main_menu.load()

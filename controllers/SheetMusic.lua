@@ -52,28 +52,28 @@ function sheet_music.checkTuneOutGoal()
     local next_tune = sheet_music.run_tunes[1]
     if not sheet_music.goal.checkTuneInGoal(sheet_music.tune_in_goal) then
         print("MISS TUNE: "..sheet_music.tune_in_goal:toString())
-        sheet_music.tune_in_goal = nil
-        table.remove(sheet_music.run_tunes, 1)
-        -- TODO maybe faire une animation de miss
+        sheet_music.remove_tune_in_goal(false)
     end
 end
 
 function sheet_music.checkNextTuneGoal()
-    print("checkNextTuneGoal: ")
     if #sheet_music.run_tunes == 0 then return end
-
+    
     local next_tune = sheet_music.run_tunes[1]
-
+    
     if sheet_music.goal.checkTuneInGoal(next_tune) then
-        print("NEXT TUNE: "..next_tune:toString())
         sheet_music.tune_in_goal = next_tune
     end
 end
 
-function sheet_music.watchKeyboard()
-    if love.keyboard.isDown( " " ) then
-        text = "The SPACE key is held down!"
-     end
+function sheet_music.remove_tune_in_goal(is_was_a_hit)
+    -- TODO maybe faire une animation de miss
+    sheet_music.tune_in_goal = nil
+    table.remove(sheet_music.run_tunes, 1)
+
+    if is_was_a_hit then 
+        return sheet_music.goal.get_hit_type(tune)
+    end
 end
 
 function sheet_music.draw()
