@@ -111,7 +111,6 @@ end
 function game.draw()
     love.graphics.setColor(1, 1, 1, 1);
     GameHud.draw()
-    love.graphics.circle("fill", 100, 50, 50)
     sheet_music.draw()
 end
 

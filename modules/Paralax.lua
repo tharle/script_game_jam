@@ -7,8 +7,9 @@
  Paralax.__index = Paralax
 
  -- L'image paralax
- function Paralax.new(src_sprite, position, direction, velocity)
+ function Paralax.new(src_sprite, position, direction, velocity, is_go_left)
     local o = setmetatable(GameObject.new(src_sprite, position, direction, velocity), Paralax)
+    o.is_go_left = is_go_left or false
     return o
  end
 
@@ -20,9 +21,14 @@ function Paralax:update(dt)
     self:move(dt)
 
     -- si le paralax touche le limite de l'image
-    if self.position.x > self.sprite:getWidth() then
+    if not self.is_go_left and self.position.x > self.sprite:getWidth() then
         -- on reset la position
         self.position.x = 0
+    else
+        if self.is_go_left and self.position.x < 0 then
+            -- on reset la position
+            self.position.x = self.sprite:getWidth()
+        end
     end
  end
 

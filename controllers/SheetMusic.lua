@@ -1,16 +1,18 @@
 local Vector = require("modules/Vector")
 local Goal = require("modules/Goal")
 local music_example = require("modules/MusicExample")
+local Paralax = require("modules.Paralax")
 
 local sheet_music   = {}
 local time_check_goal_tune = 0.05
 local elapsy_check_goal_tune = 0
 local game;
 function sheet_music.load(game_ref)
-    sheet_music.scr_image       = "assets/mock/game_line_background.png"
-    sheet_music.sprite          = love.graphics.newImage(sheet_music.scr_image)
-    sheet_music.width           = sheet_music.sprite:getWidth()
-    sheet_music.height          = sheet_music.sprite:getHeight()
+    sheet_music.scr_image       = "assets/mock/game_line_background3.png"
+    --sheet_music.sprite          = love.graphics.newImage(sheet_music.scr_image)
+    sheet_music.sprite_paralax  = Paralax.new(sheet_music.scr_image, Vector:Zero(), Vector:Left(), 250, true) 
+    sheet_music.width           = sheet_music.sprite_paralax.sprite:getWidth()
+    sheet_music.height          = sheet_music.sprite_paralax.sprite:getHeight()
     sheet_music.position        = Vector:Zero()
     sheet_music.goal            = Goal.create(Vector.new(150, 0))
     sheet_music.music           = music_example.load()
@@ -21,6 +23,9 @@ function sheet_music.load(game_ref)
 end
 
 function sheet_music.update(dt)
+
+    sheet_music.sprite_paralax:update(dt)
+
     local next_tune = sheet_music.music.getTune(game.timer)
     if next_tune then
         table.insert(sheet_music.run_tunes, next_tune)
@@ -90,7 +95,8 @@ function sheet_music.removeTuneInGoal(is_was_a_hit)
 end
 
 function sheet_music.draw()
-    love.graphics.draw(sheet_music.sprite, sheet_music.position.x, sheet_music.position.y)
+    -- love.graphics.draw(sheet_music.sprite, sheet_music.position.x, sheet_music.position.y)
+    sheet_music.sprite_paralax:draw()
     
     for i=1,#sheet_music.run_tunes do
         sheet_music.run_tunes[i]:draw()
