@@ -1,5 +1,5 @@
 
-local Vector = require("modules/Vector")
+local Vector = require("modules.Vector")
 local goal = {}
 
 function goal.create(position)
@@ -29,8 +29,8 @@ function goal.checkTuneInGoal(tune)
 end
 
 function goal.getHitType(tune)
-    local distance_from_goal = tune.position:distance(goal.position)
-
+    local distance_from_goal = tune:getCenter():distance(goal.center)
+    print(distance_from_goal)
     if distance_from_goal <= HitType.PERFECT.distance then
         return HitType.PERFECT
     elseif distance_from_goal <= HitType.WELL_DONE.distance then

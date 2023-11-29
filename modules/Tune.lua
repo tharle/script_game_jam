@@ -1,4 +1,4 @@
-local Vector = require("modules/Vector")
+local Vector = require("modules.Vector")
 local Tune = {}
 Tune.__index = Tune
 
@@ -27,6 +27,10 @@ end
 
 function Tune:getLimitX()
     return Vector.new(self.position.x, self.position.x + self.width)
+end
+
+function Tune:getCenter()
+    return Vector.new(self.position.x + self.width / 2, self.position.y + self.height / 2)
 end
 
 function Tune:toString()

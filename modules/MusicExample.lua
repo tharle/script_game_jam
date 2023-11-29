@@ -1,6 +1,6 @@
-local Tune          = require("modules/Tune")
-local TuneType      = require("modules/TuneType")
-local music_example = require("modules/music") 
+local Tune          = require("modules.Tune")
+local TuneType      = require("modules.TuneType")
+local music_example = require("modules.Music") 
 
 
 function music_example.load()
@@ -16,7 +16,7 @@ function music_example.load()
         Tune.new(TuneType.D, 14), 
         Tune.new(TuneType.A, 19), 
         Tune.new(TuneType.D, 25), 
-        Tune.new(TuneType.A, 26), 
+        Tune.new(TuneType.A, 26)
     }
 
     return music_example.create(tunes)

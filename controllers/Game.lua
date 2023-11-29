@@ -1,8 +1,9 @@
 
-tune_type = require("modules/TuneType") -- on laisse le "global" pour TuneType, pour juste charger une fois les sprites des tunes
-HitType = require("modules/HitType")
+tune_type = require("modules.TuneType") -- on laisse le "global" pour TuneType, pour juste charger une fois les sprites des tunes
+HitType = require("modules.HitType")
 
-local sheet_music = require("controllers/SheetMusic")
+local sheet_music = require("controllers.SheetMusic")
+local GameHud = require("modules.GameHud")
 
 local game = {}
 
@@ -11,18 +12,36 @@ local timer_key_press = 0.8
 
 local combo_multipl = 5
 
+local function saveHiScore()
+    local save = game.hi_score
+    love.filesystem.write("save_hi_score.data",save)
+end
+
+local function loadHiScore()
+    if love.filesystem.getInfo("save_hi_score.data") then
+        local hi_score = love.filesystem.read("save_hi_score.data")
+        return tonumber(hi_score)
+    end
+end
+
+
 function game.load()
     game.timer = 0
     game.score = 0
+    game.hi_score = loadHiScore() or 0
     game.combo = 0
+    game.is_hi_score_broked = false
     sheet_music.load(game)
+    GameHud.load(game)
+    loadHiScore()
 end
 
 function game.update(dt)
     if not isStateRun() then return end
     
     game.timer = game.timer + dt
-    sheet_music.update(dt, game.timer)
+    sheet_music.update(dt)
+    GameHud.update(dt)
 
     game.watchKeyboard(dt)
 end
@@ -66,8 +85,12 @@ function game.miss()
     game.combo = 0
 end
 
+function game.comboModifier()
+    return math.floor(game.combo/combo_multipl) + 1
+end
+
 function game.calcul_score(hit_type)
-    local score = hit_type.value * (math.floor(game.combo/combo_multipl) + 1)
+    local score = hit_type.value * game.comboModifier()
     game.score = game.score + score
     print("COMBO X "..game.combo)
     print(hit_type.name)
@@ -75,7 +98,19 @@ function game.calcul_score(hit_type)
     print("TOTAL SCORE: "..game.score)
 end
 
+function game.gameOver()
+    if game.score > game.hi_score then
+        game.is_hi_score_broked = true
+        game.hi_score = game.score
+        print("HI SCORE!!!!!!!!")
+        saveHiScore()
+    end
+    changeState(GameState.GAME_WON)
+end
+
 function game.draw()
+    love.graphics.setColor(1, 1, 1, 1);
+    GameHud.draw()
     love.graphics.circle("fill", 100, 50, 50)
     sheet_music.draw()
 end

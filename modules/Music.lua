@@ -13,7 +13,7 @@ end
 
 
 function music.getTune(time)
-    if #music.tunes ~= 0 then 
+    if not music.isEmpty() then 
         local tune = music.tunes[1]
 
         if tune.time <= time then
@@ -22,6 +22,10 @@ function music.getTune(time)
     end
 
     return false
+end
+
+function music.isEmpty()
+    return #music.tunes == 0
 end
 
 

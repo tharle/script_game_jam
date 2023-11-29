@@ -58,6 +58,10 @@ function isStateGameWon()
 end
 
 function changeState(state)
+    if state == GameState.GAME_RUN then
+        game.load()
+    end
+
     game_state = state
 end
 

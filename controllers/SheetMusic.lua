@@ -20,8 +20,8 @@ function sheet_music.load(game_ref)
     game = game_ref
 end
 
-function sheet_music.update(dt, timer)
-    local next_tune = sheet_music.music.getTune(timer)
+function sheet_music.update(dt)
+    local next_tune = sheet_music.music.getTune(game.timer)
     if next_tune then
         table.insert(sheet_music.run_tunes, next_tune)
     end
@@ -35,6 +35,13 @@ function sheet_music.update(dt, timer)
     if elapsy_check_goal_tune >=  time_check_goal_tune then
         elapsy_check_goal_tune = elapsy_check_goal_tune - time_check_goal_tune
         sheet_music.checkTuneInGoal()
+    end
+
+
+    -- print(#sheet_music.run_tunes)
+    -- print(#sheet_music.music.tunes)
+    if #sheet_music.run_tunes == 0 and sheet_music.music.isEmpty() then
+        game.gameOver()
     end
 end
 
@@ -86,7 +93,7 @@ function sheet_music.draw()
     love.graphics.draw(sheet_music.sprite, sheet_music.position.x, sheet_music.position.y)
     
     for i=1,#sheet_music.run_tunes do
-        sheet_music.run_tunes[i]:draw(dt)
+        sheet_music.run_tunes[i]:draw()
     end
     
     sheet_music.goal.draw()
