@@ -87,7 +87,7 @@ function DrawMainMenuUI()
 
     love.graphics.setColor(teal)
     love.graphics.setFont(titleFont)
-    love.graphics.print("GAME NAME", SCREEN_WIDHT * 0.12, SCREEN_HEIGHT * 0.07)
+    love.graphics.print(title, SCREEN_WIDHT * 0.30, SCREEN_HEIGHT * 0.07)
     
     love.graphics.setColor(black)
     love.graphics.rectangle("fill", rectanglePosX, SCREEN_HEIGHT * 0.07, SCREEN_WIDHT, 180)
@@ -96,7 +96,7 @@ function DrawMainMenuUI()
 
     love.graphics.setFont(mainFont)
     love.graphics.setColor(white)
-    love.graphics.print("GAME INFORMATION", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.33, 0, 0.4)
+    -- love.graphics.print("GAME INFORMATION", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.33, 0, 0.4)
     love.graphics.setColor(black)
     love.graphics.rectangle("fill", rectanglePosX - 150, SCREEN_HEIGHT * 0.3, SCREEN_WIDHT, SCREEN_HEIGHT * 0.1)
 
@@ -106,10 +106,14 @@ function DrawMainMenuUI()
     love.graphics.setColor(white)
     love.graphics.print("------- CONTROLS -------", SCREEN_WIDHT * 0.30, SCREEN_HEIGHT * 0.46, 0, 0.3)
 
+    love.graphics.setColor({1, 0.65, 0})
+    love.graphics.print(" - D -", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.53, 0, 0.25)
     love.graphics.setColor(red)
-    love.graphics.print(" COLOR : A    COLOR : S ", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.53, 0, 0.25)
-    love.graphics.print(" COLOR : D    COLOR : F ", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.58, 0, 0.25)
-    love.graphics.print("   SHOOT : SPACE BAR    ", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.63, 0, 0.25)
+    love.graphics.print(" - E - ", SCREEN_WIDHT * 0.5, SCREEN_HEIGHT * 0.53, 0, 0.25)
+    love.graphics.setColor({0.2, 1, 1})
+    love.graphics.print(" - J -", SCREEN_WIDHT * 0.33, SCREEN_HEIGHT * 0.58, 0, 0.25)
+    love.graphics.setColor(tune_type.SPACE_BAR.color)
+    love.graphics.print(" - SPACE BAR -    ", SCREEN_WIDHT * 0.5, SCREEN_HEIGHT * 0.58, 0, 0.25)
 
 
     love.graphics.setColor(white)

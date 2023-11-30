@@ -1,6 +1,7 @@
 ---------------------------------------------------------------
 --  LOAD
 ---------------------------------------------------------------
+title = "Mus1c!"
 
 require("libs/Clone") -- Lib pour clone table
 
@@ -15,6 +16,7 @@ local game_state = GameState.MAIN_MENU
 mode_debug = false
 
 function  love.load()
+    love.window.setTitle( title )
     main_menu.load()
     gameOver_menu.load()
     gameWon_menu.load()
