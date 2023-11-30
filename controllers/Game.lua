@@ -8,7 +8,7 @@ local GameHud = require("modules.GameHud")
 local game = {}
 
 local cool_down_key_press = 0
-local timer_key_press = 0.8
+local timer_key_press = 0.2
 
 local combo_multipl = 5
 
@@ -49,10 +49,10 @@ end
 function game.watchKeyboard(dt)
     
     local tune_type_pressed = false
-    if love.keyboard.isDown(tune_type.A.key) then
-        tune_type_pressed = tune_type.A
-    elseif love.keyboard.isDown(tune_type.S.key) then
-        tune_type_pressed = tune_type.S
+    if love.keyboard.isDown(tune_type.E.key) then
+        tune_type_pressed = tune_type.E
+    elseif love.keyboard.isDown(tune_type.J.key) then
+        tune_type_pressed = tune_type.J
     elseif love.keyboard.isDown(tune_type.D.key) then
         tune_type_pressed = tune_type.D
     elseif love.keyboard.isDown(tune_type.F.key) then
@@ -76,6 +76,7 @@ function game.target_tune(tune_type_pressed)
         sheet_music.removeTuneInGoal(false)
     elseif sheet_music.tune_in_goal.type.key == tune_type_pressed.key then
         game.combo = game.combo + 1
+        sheet_music.tune_in_goal:play()
         hit_type = sheet_music.removeTuneInGoal(true)
         game.calcul_score(hit_type)
     end

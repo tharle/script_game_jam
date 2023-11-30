@@ -1,6 +1,7 @@
 local Vector = require("modules/Vector")
 local Goal = require("modules/Goal")
 local music_example = require("modules/MusicExample")
+--local music = require("modules/MusicAOBTD")
 local Paralax = require("modules.Paralax")
 
 local sheet_music   = {}
@@ -20,6 +21,8 @@ function sheet_music.load(game_ref)
     sheet_music.tune_in_goal    = nil
 
     game = game_ref
+
+    sheet_music.music.play()
 end
 
 function sheet_music.update(dt)

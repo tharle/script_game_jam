@@ -8,7 +8,7 @@ function Tune.new(tune_type, time)
     local o = {}
     
     o.position = Vector.new(880, 20)
-    o.velocity = 250
+    o.velocity = 400
     o.direction = Vector:Left()
     o.type = tune_type
     o.time = time
@@ -33,9 +33,14 @@ function Tune:getCenter()
     return Vector.new(self.position.x + self.width / 2, self.position.y + self.height / 2)
 end
 
+function Tune:play()
+    love.audio.play(self.type.sound)
+end
+
 function Tune:toString()
     return "Table:Tune("..self.type.key..")"
 end
+
 
 function Tune:draw()
     love.graphics.draw(self.type.sprite, self.position.x, self.position.y)

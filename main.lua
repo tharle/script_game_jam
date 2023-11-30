@@ -22,7 +22,7 @@ function  love.load()
 end
 
 function startGame()
-    game.load()
+   -- game.load()
 end
 
 ---------------------------------------------------------------
