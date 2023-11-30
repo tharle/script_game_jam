@@ -60,8 +60,10 @@ end
 function changeState(state)
     if state == GameState.GAME_RUN then
         game.load()
+    elseif state == GameState.GAME_WON then
+        WonScreenReload()
     end
-
+    
     game_state = state
 end
 
