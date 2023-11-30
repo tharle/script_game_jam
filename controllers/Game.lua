@@ -12,6 +12,8 @@ local timer_key_press = 0.2
 
 local combo_multipl = 5
 
+sound_game_over = love.audio.newSource("assets/sounds/Applause_Crowd_Cheering_sound_effect.mp3", "static");
+
 local function saveHiScore()
     local save = game.hi_score
     love.filesystem.write("save_hi_score.data",save)
@@ -35,6 +37,8 @@ function game.load()
     sheet_music.load(game)
     GameHud.load(game)
     loadHiScore()
+    
+    love.audio.stop(sound_game_over)
 end
 
 function game.update(dt)
@@ -81,12 +85,14 @@ function game.target_tune(tune_type_pressed)
         GameHud.setFlashLight(sheet_music.tune_in_goal.type.color)
         game.last_hit = sheet_music.removeTuneInGoal(true)
         game.calcul_score(game.last_hit)
+        sheet_music.music.hit()
     end
 end
 
 function game.miss()
     game.combo = 0
     game.last_hit = HitType.MISS
+    sheet_music.music.miss()
 end
 
 function game.comboModifier()
@@ -108,6 +114,8 @@ function game.gameOver()
         game.hi_score = game.score
         print("HI SCORE!!!!!!!!")
         saveHiScore()
+        sheet_music.music.stop()
+        love.audio.play(sound_game_over)
     end
     changeState(GameState.GAME_WON)
 end

@@ -1,7 +1,7 @@
 local Vector = require("modules/Vector")
 local Goal = require("modules/Goal")
 local music_example = require("modules/MusicExample")
---local music = require("modules/MusicAOBTD")
+local music = require("modules/MusicAOBTD")
 local Paralax = require("modules.Paralax")
 
 local sheet_music   = {}
@@ -11,12 +11,12 @@ local game;
 function sheet_music.load(game_ref)
     sheet_music.scr_image       = "assets/mock/game_line_background3.png"
     --sheet_music.sprite          = love.graphics.newImage(sheet_music.scr_image)
-    sheet_music.sprite_paralax  = Paralax.new(sheet_music.scr_image, Vector:Zero(), Vector:Left(), 250, true) 
+    sheet_music.sprite_paralax  = Paralax.new(sheet_music.scr_image, Vector:Zero(), Vector:Left(), 400, true) 
     sheet_music.width           = sheet_music.sprite_paralax.sprite:getWidth()
     sheet_music.height          = sheet_music.sprite_paralax.sprite:getHeight()
     sheet_music.position        = Vector:Zero()
     sheet_music.goal            = Goal.create(Vector.new(150, 0))
-    sheet_music.music           = music_example.load()
+    sheet_music.music           = music.load()
     sheet_music.run_tunes       = {}
     sheet_music.tune_in_goal    = nil
 

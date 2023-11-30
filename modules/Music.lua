@@ -17,6 +17,18 @@ function music.addTune(tune)
     table.insert(music.tunes, tune)
 end
 
+function music.miss()
+    music.background_music:setVolume(0.1)
+end
+
+function music.hit()
+    music.background_music:setVolume(1)
+end
+
+function music.stop()
+    love.audio.stop(music.background_music)
+end
+
 function music.getTune(time)
     if not music.isEmpty() then 
         local tune = music.tunes[1]

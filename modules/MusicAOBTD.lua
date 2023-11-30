@@ -10,53 +10,55 @@ function music.load()
         Tune.new(TuneType.J, 2)
     }
     
+    for i=1,10 do
+        local repeat_tune = (i - 1) * 5.8
+        table.insert(tunes, Tune.new(TuneType.J, 3 + repeat_tune)) 
+        table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 3.3+ repeat_tune)) 
 
-    for i = 1, 17 do
-        local reapeat = 3.5 * (i-1)
-        table.insert(tunes, Tune.new(TuneType.J, 10 + reapeat)) 
-        -- table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 5+ reapeat)) 
+        table.insert(tunes, Tune.new(TuneType.J, 3.8+ repeat_tune)) 
 
-        table.insert(tunes, Tune.new(TuneType.J, 5+ reapeat)) 
+        table.insert(tunes, Tune.new(TuneType.J,4.1+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.D, 4.9+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 5.3+ repeat_tune))
 
-        table.insert(tunes, Tune.new(TuneType.J,7+ reapeat))
-        -- table.insert(tunes, Tune.new(TuneType.D, 6+ reapeat))
-        -- table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 6+ reapeat))
+        table.insert(tunes, Tune.new(TuneType.J, 5.5+ repeat_tune))
 
-        table.insert(tunes, Tune.new(TuneType.J, 8.5+ reapeat))
+        table.insert(tunes, Tune.new(TuneType.J, 6+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 6.5+ repeat_tune))
 
-        --table.insert(tunes, Tune.new(TuneType.J, 7+ reapeat))
-        table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 9+ reapeat))
+        table.insert(tunes, Tune.new(TuneType.J, 7+ repeat_tune))
 
-        table.insert(tunes, Tune.new(TuneType.J, 10+ reapeat))
+        table.insert(tunes, Tune.new(TuneType.J, 7.4+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.D, 7.8+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 8+ repeat_tune))
 
-        --table.insert(tunes, Tune.new(TuneType.J, 8+ reapeat))
-        table.insert(tunes, Tune.new(TuneType.D, 11+ reapeat))
-        --table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 8+ reapeat))
-
-        table.insert(tunes, Tune.new(TuneType.J, 13+ reapeat))
+        table.insert(tunes, Tune.new(TuneType.J, 8.5+ repeat_tune))
     end
 
-    table.insert(tunes, Tune.new(TuneType.J, 75)) 
-    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 75)) 
+    table.insert(tunes, Tune.new(TuneType.J, 65)) 
+    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 65.5)) 
 
-    table.insert(tunes, Tune.new(TuneType.J, 75.5)) 
+    table.insert(tunes, Tune.new(TuneType.J, 65.8)) 
 
-    table.insert(tunes, Tune.new(TuneType.J, 76))
-    table.insert(tunes, Tune.new(TuneType.D, 76))
-    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 76))
+    table.insert(tunes, Tune.new(TuneType.J, 66))
+    table.insert(tunes, Tune.new(TuneType.D, 67))
+    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 67.5))
 
-    table.insert(tunes, Tune.new(TuneType.J, 76.5))
+    table.insert(tunes, Tune.new(TuneType.J, 68))
 
-    table.insert(tunes, Tune.new(TuneType.J, 77)) 
-    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 77)) 
+    table.insert(tunes, Tune.new(TuneType.J, 68.5)) 
+    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 69)) 
 
-    table.insert(tunes, Tune.new(TuneType.D, 77.5))
-    table.insert(tunes, Tune.new(TuneType.D, 78))
-    table.insert(tunes, Tune.new(TuneType.D, 78.5))
-    table.insert(tunes, Tune.new(TuneType.J, 79))
-    table.insert(tunes, Tune.new(TuneType.D, 79))
-    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 79))
-    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 79.5))
+    table.insert(tunes, Tune.new(TuneType.D, 69.4))
+    table.insert(tunes, Tune.new(TuneType.D, 69.7))
+    table.insert(tunes, Tune.new(TuneType.D, 70))
+    table.insert(tunes, Tune.new(TuneType.J, 71))
+    table.insert(tunes, Tune.new(TuneType.D, 71.4))
+    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 71.8))
+    table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 74))
+    table.insert(tunes, Tune.new(TuneType.D, 75))
+
+
     
     return music.create(tunes, love.audio.newSource("assets/sounds/Queen_-_Another_One_Bites_the_Dust_-_Drumless.mp3", "stream"))
 end

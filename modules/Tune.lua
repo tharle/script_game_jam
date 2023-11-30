@@ -34,7 +34,7 @@ function Tune:getCenter()
 end
 
 function Tune:play()
-    love.audio.play(self.type.sound)
+    -- love.audio.play(self.type.sound)
 end
 
 function Tune:toString()
