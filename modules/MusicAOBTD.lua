@@ -15,18 +15,18 @@ function music.load()
         table.insert(tunes, Tune.new(TuneType.J, 3 + repeat_tune)) 
         table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 3.3+ repeat_tune)) 
 
-        table.insert(tunes, Tune.new(TuneType.J, 3.8+ repeat_tune)) 
+        table.insert(tunes, Tune.new(TuneType.E, 3.8+ repeat_tune)) 
 
         table.insert(tunes, Tune.new(TuneType.J,4.1+ repeat_tune))
         table.insert(tunes, Tune.new(TuneType.D, 4.9+ repeat_tune))
         table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 5.3+ repeat_tune))
 
-        table.insert(tunes, Tune.new(TuneType.J, 5.5+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.E, 5.5+ repeat_tune))
 
         table.insert(tunes, Tune.new(TuneType.J, 6+ repeat_tune))
         table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 6.5+ repeat_tune))
 
-        table.insert(tunes, Tune.new(TuneType.J, 7+ repeat_tune))
+        table.insert(tunes, Tune.new(TuneType.E, 7+ repeat_tune))
 
         table.insert(tunes, Tune.new(TuneType.J, 7.4+ repeat_tune))
         table.insert(tunes, Tune.new(TuneType.D, 7.8+ repeat_tune))
@@ -50,8 +50,8 @@ function music.load()
     table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 69)) 
 
     table.insert(tunes, Tune.new(TuneType.D, 69.4))
-    table.insert(tunes, Tune.new(TuneType.D, 69.7))
-    table.insert(tunes, Tune.new(TuneType.D, 70))
+    table.insert(tunes, Tune.new(TuneType.E, 69.7))
+    table.insert(tunes, Tune.new(TuneType.E, 70))
     table.insert(tunes, Tune.new(TuneType.J, 71))
     table.insert(tunes, Tune.new(TuneType.D, 71.4))
     table.insert(tunes, Tune.new(TuneType.SPACE_BAR, 71.8))
