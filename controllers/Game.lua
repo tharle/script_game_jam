@@ -31,6 +31,7 @@ function game.load()
     game.hi_score = loadHiScore() or 0
     game.combo = 0
     game.is_hi_score_broked = false
+    game.last_hit = false
     sheet_music.load(game)
     GameHud.load(game)
     loadHiScore()
@@ -77,13 +78,15 @@ function game.target_tune(tune_type_pressed)
     elseif sheet_music.tune_in_goal.type.key == tune_type_pressed.key then
         game.combo = game.combo + 1
         sheet_music.tune_in_goal:play()
-        hit_type = sheet_music.removeTuneInGoal(true)
-        game.calcul_score(hit_type)
+        GameHud.setFlashLight(sheet_music.tune_in_goal.type.color)
+        game.last_hit = sheet_music.removeTuneInGoal(true)
+        game.calcul_score(game.last_hit)
     end
 end
 
 function game.miss()
     game.combo = 0
+    game.last_hit = HitType.MISS
 end
 
 function game.comboModifier()
@@ -94,7 +97,7 @@ function game.calcul_score(hit_type)
     local score = hit_type.value * game.comboModifier()
     game.score = game.score + score
     print("COMBO X "..game.combo)
-    print(hit_type.name)
+    print(hit_type.name.."!")
     print("ADD: "..score.." TO YOUR SCORE")
     print("TOTAL SCORE: "..game.score)
 end

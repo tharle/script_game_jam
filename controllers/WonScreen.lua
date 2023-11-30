@@ -116,9 +116,9 @@ function DrawGameWon_menuUI()
     love.graphics.setColor(green)
 
     -- Draw the text centered at its position
-    local textWidth = titleFont:getWidth("YOU WIN !!!")
+    local textWidth = titleFont:getWidth("YOU ROCK !!!")
     local textHeight = titleFont:getHeight()
-    love.graphics.print("YOU WIN !!!", textPosX - textWidth / 2, textPosY - textHeight / 2)
+    love.graphics.print("YOU ROCK !!!", textPosX - textWidth / 2, textPosY - textHeight / 2)
 
     if canDraw then
         -- Draw the red rectangle here so it comes on top of the text
